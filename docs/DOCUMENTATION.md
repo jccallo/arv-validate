@@ -563,4 +563,4 @@ For the comprehensive catalog of 40+ built-in rules (data types, string length, 
 
 ## License
 
-MIT © [Julio Cesar Callo](https://github.com/jccallo)
+MIT © [jccallo](https://github.com/jccallo)

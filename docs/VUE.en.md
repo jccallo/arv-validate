@@ -508,4 +508,4 @@ Usage in parent form:
 
 ## License
 
-MIT © [Julio Cesar Callo](https://github.com/jccallo)
+MIT © [jccallo](https://github.com/jccallo)

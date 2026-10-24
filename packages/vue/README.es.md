@@ -116,4 +116,4 @@ El composable `useValidator(initialData, schema, options)` retorna:
 
 ## Licencia
 
-MIT © [Julio Cesar Callo](https://github.com/jccallo)
+MIT © [jccallo](https://github.com/jccallo)

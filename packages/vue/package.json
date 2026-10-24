@@ -1,6 +1,6 @@
 {
   "name": "arv-validate-vue",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Official reactive Vue 3 adapter for arv-validate (Composition API, Vite, Nuxt)",
   "main": "index.js",
   "module": "index.js",
@@ -30,7 +30,7 @@
   ],
   "peerDependencies": {
     "vue": "^3.0.0",
-    "arv-validate": "^1.1.0"
+    "arv-validate": "^1.1.1"
   },
   "author": "jccallo",
   "license": "MIT",
