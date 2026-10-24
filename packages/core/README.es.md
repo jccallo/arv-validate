@@ -1,5 +1,7 @@
 # arv-validate
 
+[English](https://github.com/jccallo/arv-validate/blob/main/README.md) | [Español](https://github.com/jccallo/arv-validate/blob/main/README.es.md)
+
 Motor de validación reactivo en tiempo real, **100% agnóstico** a cualquier framework.
 
 Funciona en Vanilla JS, Vue 3, React, Node.js, o cualquier entorno JavaScript.

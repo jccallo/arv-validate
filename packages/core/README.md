@@ -7,7 +7,7 @@
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](https://www.npmjs.com/package/arv-validate)
 [![TypeScript](https://img.shields.io/badge/types-included-blue.svg)](https://www.npmjs.com/package/arv-validate)
 
-[English](./README.md) | [Español](./README.es.md)
+[English](https://github.com/jccallo/arv-validate/blob/main/README.md) | [Español](https://github.com/jccallo/arv-validate/blob/main/README.es.md)
 
 `arv-validate` is **100% framework-agnostic**. It runs in Vanilla JS, Vue 3, React, Angular, Svelte, Node.js, Bun, browsers, or Web Workers.
 

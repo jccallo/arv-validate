@@ -6,7 +6,7 @@
 [![license](https://img.shields.io/npm/l/arv-validate-vue.svg)](https://github.com/jccallo/arv-validate/blob/main/LICENSE)
 [![Vue 3](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://vuejs.org/)
 
-[English](./README.md) | [Español](./README.es.md)
+[English](https://github.com/jccallo/arv-validate/blob/main/README.md) | [Español](https://github.com/jccallo/arv-validate/blob/main/README.es.md)
 
 ---
 

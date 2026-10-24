@@ -3,7 +3,7 @@
 Motor de validación reactivo en tiempo real, **100% agnóstico** a cualquier framework.  
 Zero dependencies.
 
-🌐 **Read in [English](./README.md)** | 📖 **[Documentación completa en Español](./docs/DOCUMENTACION.md)**
+🌐 **Read in [English](https://github.com/jccallo/arv-validate/blob/main/README.md)** | 📖 **[Documentación completa en Español](https://github.com/jccallo/arv-validate/blob/main/docs/DOCUMENTACION.md)**
 
 ---
 

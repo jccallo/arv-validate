@@ -2,7 +2,7 @@
 
 Adaptador reactivo de [arv-validate](https://www.npmjs.com/package/arv-validate) para **Vue 3** (Composition API con `<script setup>`).
 
-[English](./README.md) | [Español](./README.es.md)
+[English](https://github.com/jccallo/arv-validate/blob/main/README.md) | [Español](https://github.com/jccallo/arv-validate/blob/main/README.es.md)
 
 ## Instalación
 

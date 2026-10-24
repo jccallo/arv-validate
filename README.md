@@ -7,7 +7,7 @@
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](https://www.npmjs.com/package/arv-validate)
 [![TypeScript](https://img.shields.io/badge/types-included-blue.svg)](https://www.npmjs.com/package/arv-validate)
 
-[English](./README.md) | [Español](./README.es.md)
+[English](https://github.com/jccallo/arv-validate/blob/main/README.md) | [Español](https://github.com/jccallo/arv-validate/blob/main/README.es.md)
 
 📖 **[Full Documentation](./docs/DOCUMENTATION.md)** | 📗 **[Documentación en Español](./docs/DOCUMENTACION.md)**
 
