@@ -1,0 +1,49 @@
+{
+  "name": "arv-validate",
+  "version": "1.0.0",
+  "description": "Motor de validación reactivo en tiempo real, 100% agnóstico a cualquier framework (Vanilla JS, Vue 3, React, Node.js, etc.)",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./core": "./core.js",
+    "./rules": "./rules.js",
+    "./messages": "./messages.js"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "core.js",
+    "rules.js",
+    "messages.js",
+    "README.md"
+  ],
+  "keywords": [
+    "validation",
+    "validator",
+    "form-validation",
+    "reactive",
+    "agnostic",
+    "framework-agnostic",
+    "vanilla-js",
+    "real-time",
+    "live-validation",
+    "proxy",
+    "clean-code",
+    "solid"
+  ],
+  "author": "jccallo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

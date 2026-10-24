@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "arv-validate-monorepo",
+  "description": "Monorepo para la suite de validación arv-validate",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node test/test.mjs && node test/test_deep.mjs && node test/test_vue.mjs",
+    "test:core": "node test/test.mjs",
+    "test:deep": "node test/test_deep.mjs",
+    "test:vue": "node --expose-gc test/test_vue.mjs",
+    "test:stress": "node test/stress_test.mjs"
+  },
+  "devDependencies": {
+    "vue": "^3.5.44"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
