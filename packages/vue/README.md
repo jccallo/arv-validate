@@ -1,104 +1,158 @@
 # arv-validate-vue
 
-Adaptador reactivo de [arv-validate](https://www.npmjs.com/package/arv-validate) para **Vue 3** y **Quasar** (Composition API).
+> Official reactive [Vue 3](https://vuejs.org/) adapter for [arv-validate](https://www.npmjs.com/package/arv-validate) using the Composition API (`<script setup>`).
 
-## Instalación
+[![npm version](https://img.shields.io/npm/v/arv-validate-vue.svg)](https://www.npmjs.com/package/arv-validate-vue)
+[![license](https://img.shields.io/npm/l/arv-validate-vue.svg)](https://github.com/jccallo/arv-validate/blob/main/LICENSE)
+[![Vue 3](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://vuejs.org/)
+
+[English](./README.md) | [Español](./README.es.md)
+
+---
+
+## Installation
 
 ```bash
 npm install arv-validate arv-validate-vue
 ```
 
-## Uso rápido
+---
 
-```javascript
-import { useValidator, required, email, minLength } from 'arv-validate-vue'
-
-// En tu setup() o <script setup>
-const v = useValidator(
-  { nombre: '', correo: '' },
-  {
-    nombre: [required('El nombre es obligatorio'), minLength(3, 'Mínimo 3 caracteres')],
-    correo: [required('El correo es obligatorio'), email('Correo inválido')]
-  }
-)
-```
+## Quick Start
 
 ```html
-<!-- Template Vue 3 / Quasar -->
-<q-input
-  v-model="v.values.nombre"
-  label="Nombre"
-  :error="v.hasError('nombre')"
-  :error-message="v.getError('nombre')"
-  @blur="v.touch('nombre')"
-/>
+<script setup>
+import { useValidator, required, email, minLength, trim } from 'arv-validate-vue'
 
-<q-input
-  v-model="v.values.correo"
-  label="Correo"
-  :error="v.hasError('correo')"
-  :error-message="v.getError('correo')"
-  @blur="v.touch('correo')"
-/>
+const v = useValidator(
+  {
+    username: '',
+    email: ''
+  },
+  {
+    username: [required(), minLength(3), trim()],
+    email: [required(), email(), trim()]
+  }
+)
 
-<q-btn label="Enviar" @click="onSubmit" :disable="!v.isValid" />
-```
-
-```javascript
 const onSubmit = async () => {
-  const ok = await v.validate()
-  if (!ok) return
+  const isValid = await v.validate()
+  if (!isValid) return
+
+  // Clean, sanitized data ready for backend API
   const payload = v.getPayload()
-  await api.post('/endpoint', payload)
+  await fetch('/api/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
 }
+</script>
+
+<template>
+  <form @submit.prevent="onSubmit" class="form">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        v-model="v.values.username"
+        @blur="v.touch('username')"
+        :class="{ 'is-invalid': v.hasError('username') }"
+      />
+      <span v-if="v.hasError('username')" class="error-text">
+        {{ v.getError('username') }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        v-model="v.values.email"
+        @blur="v.touch('email')"
+        :class="{ 'is-invalid': v.hasError('email') }"
+      />
+      <span v-if="v.hasError('email')" class="error-text">
+        {{ v.getError('email') }}
+      </span>
+    </div>
+
+    <button type="submit" :disabled="!v.isValid">
+      Submit
+    </button>
+  </form>
+</template>
 ```
 
-## Características
+---
 
-- 🔄 **Reactividad nativa** de Vue 3 (reactive, computed)
-- ⚡ **Validación en vivo** mientras el usuario escribe
-- 🧹 **Limpieza automática** al desmontar el componente (`onUnmounted`)
-- 📦 Re-exporta todo `arv-validate` — un solo import para todo
+## Key Features
 
-## Uso fuera de componentes (ej: Pinia)
+- 🔄 **Native Vue 3 Reactivity**: Built directly on Vue 3's `reactive` and `computed` primitives.
+- ⚡ **Live Real-Time Validation**: Instant feedback as user types or on blur.
+- 🧹 **Automatic Cleanup**: Automatically unregisters listeners on `onUnmounted`. No memory leaks.
+- 📦 **All-in-One Export**: Re-exports all core rules, transformers, and i18n helpers. Just import from `'arv-validate-vue'`.
 
-En componentes Vue (`<script setup>`), la limpieza es **100% automática**. Si creas un validador fuera de un componente (ej. en un Store de Pinia), puedes usar `v.dispose()` para liberar memoria cuando ya no lo necesites:
+---
+
+## Usage Outside Components (e.g. Pinia Stores)
+
+In Vue components (`<script setup>`), cleanup is **100% automatic**. When creating a validator outside of component lifecycles (like in a Pinia store or composable module), call `v.dispose()` to release subscriptions:
 
 ```javascript
 import { defineStore } from 'pinia'
-import { useValidator, required } from 'arv-validate-vue'
+import { useValidator, required, email } from 'arv-validate-vue'
 
 export const useAuthStore = defineStore('auth', () => {
-  const v = useValidator({ email: '' }, { email: [required()] })
+  const v = useValidator(
+    { email: '', password: '' },
+    {
+      email: [required(), email()],
+      password: [required()]
+    }
+  )
 
   const logout = () => {
-    v.dispose() // Limpia listeners manualmente al cerrar sesión
+    v.dispose() // Manually cleans up listeners on logout
   }
 
   return { v, logout }
 })
 ```
 
-## API
+---
 
-El composable `useValidator(initialData, schema, options)` retorna todo lo del core agnóstico más reactividad de Vue:
+## API Reference (`useValidator`)
 
-| Propiedad | Tipo | Descripción |
-|-----------|------|-------------|
-| `v.values` | `Proxy (reactive)` | Valores reactivos bidireccionales (`v-model`) |
-| `v.isValid` | `boolean` | ¿Formulario válido? (reactivo en templates y watch) |
-| `v.isDirty` | `boolean` | ¿Algo fue modificado? (reactivo) |
-| `v.hasError(campo)` | `function` | ¿Campo tiene error? (reactivo) |
-| `v.getError(campo)` | `function` | Mensaje de error del campo (reactivo) |
-| `v.isValidating(campo?)` | `function` | ¿Validación asíncrona (backend) en curso? |
-| `v.touch(campo)` | `function` | Marcar campo como tocado |
-| `v.untouch(campo)` | `function` | Desmarcar campo como tocado |
-| `v.validate()` | `async function` | Validar todo el formulario |
-| `v.reset(newValues?)` | `function` | Restaurar al estado inicial o nuevos valores |
-| `v.setValues(patch)` | `function` | Actualizar múltiples campos a la vez |
-| `v.getPayload()` | `function` | Datos sanitizados para API |
-| `v.dispose()` | `function` | Limpieza manual de la suscripción (fuera de setup) |
+`useValidator(initialData, schema, options)` returns:
 
-## Licencia
+| Property | Type | Description |
+|---|---|---|
+| `v.values` | `Proxy (reactive)` | Two-way reactive values object (`v-model`) |
+| `v.isValid` | `boolean` | Is form valid? (reactive in templates and computed) |
+| `v.isDirty` | `boolean` | Has any value been modified? (reactive) |
+| `v.hasError(field)` | `function` | Does field have an error and has been touched? (reactive) |
+| `v.getError(field)` | `function` | Error message string or `null` (reactive) |
+| `v.isValidating(field?)` | `function` | Is an async validation rule running? |
+| `v.touch(field)` | `function` | Mark field as touched (`@blur`) |
+| `v.untouch(field)` | `function` | Unmark field as touched |
+| `v.validate()` | `async function` | Touches all fields and runs all validations |
+| `v.reset(newValues?)` | `function` | Resets form to clean initial snapshot or updates with new values |
+| `v.setValues(patch)` | `function` | Updates multiple fields simultaneously |
+| `v.getPayload()` | `function` | Returns sanitized data ready for API |
+| `v.dispose()` | `function` | Manual subscription cleanup |
 
-MIT
+---
+
+## Documentation
+
+- ⚡ **[Full Vue 3 Guide with 9 Examples (English)](../../docs/VUE.en.md)**
+- ⚡ **[Guía Completa para Vue 3 en Español](../../docs/VUE.md)**
+- 📖 **[Core Agnostic Documentation](../../docs/DOCUMENTATION.md)**
+
+---
+
+## License
+
+MIT © [Julio Cesar Callo](https://github.com/jccallo)

@@ -3,6 +3,8 @@
 > Motor de validación y sanitización de formularios reactivo, atómico y de alto rendimiento.  
 > Diseñado bajo principios **Clean Code**, **SOLID (SRP)** y arquitectura **100% agnóstica**, con adaptadores oficiales para los frameworks modernos.
 
+[English](./DOCUMENTATION.md) | [Español](./DOCUMENTACION.md)
+
 ---
 
 ## 📑 Tabla de Contenidos

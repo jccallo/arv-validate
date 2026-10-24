@@ -1,53 +1,158 @@
 # arv-validate
 
-Motor de validación reactivo en tiempo real, **100% agnóstico** a cualquier framework.  
-Zero dependencies.
+> Ultra-fast, zero-dependency, atomic, reactive form validation and sanitization engine for modern JavaScript and TypeScript.
 
-📖 **[Documentación completa](./docs/DOCUMENTACION.md)**
+[![npm version](https://img.shields.io/npm/v/arv-validate.svg)](https://www.npmjs.com/package/arv-validate)
+[![license](https://img.shields.io/npm/l/arv-validate.svg)](https://github.com/jccallo/arv-validate/blob/main/LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](https://www.npmjs.com/package/arv-validate)
+[![TypeScript](https://img.shields.io/badge/types-included-blue.svg)](https://www.npmjs.com/package/arv-validate)
+
+[English](./README.md) | [Español](./README.es.md)
+
+📖 **[Full Documentation](./docs/DOCUMENTATION.md)** | 📗 **[Documentación en Español](./docs/DOCUMENTACION.md)**
 
 ---
 
-## Instalación
+## Highlights
+
+- ⚡ **Real-time Live Validation** — Powered by ES6 Proxies. Errors appear and disappear instantaneously without UI lag.
+- 🌐 **Built-in i18n (Internationalization)** — English by default, Spanish included (`setLocale('es')`), plus full custom message configuration.
+- 🧩 **40+ Built-in Rules** — `required`, `email`, `date`, `when`, `sameAs`, `minAge`, `custom`, and more. Single Responsibility Principle (SRP).
+- 🔄 **Async & Race-Condition Safe** — Built-in incremental token system discards stale API responses when typing fast.
+- 🧹 **Pure Data Sanitization (`getPayload`)** — Format inputs visually on screen while getting clean, parsed, typed payloads for your API (Axios/Fetch).
+- 🌳 **Deep Nested Objects & Arrays** — Full dot notation support (`'user.profile.name'`, `each()`).
+- 📦 **Zero Dependencies** — Lightweight, tree-shakeable, and 100% framework-agnostic. Runs in Node.js, Bun, browsers, and workers.
+
+---
+
+## Installation
 
 ```bash
-npm install arv-validate           # Vanilla JS / Node.js
-npm install arv-validate-vue       # + Adaptador Vue 3
+# Core engine (Agnostic / Vanilla JS / Node.js)
+npm install arv-validate
+
+# Vue 3 official adapter (Composition API)
+npm install arv-validate-vue
 ```
 
-## Ejemplo rápido
+---
+
+## Quick Start
 
 ```javascript
-import { createValidator, required, email, minLength } from 'arv-validate'
+import { createValidator, required, email, minLength, trim } from 'arv-validate'
 
-const v = createValidator(
-  { nombre: '', correo: '' },
+const validator = createValidator(
   {
-    nombre: [required(), minLength(3)],
-    correo: [required(), email()]
+    name: '',
+    email: ''
+  },
+  {
+    name: [required(), minLength(3), trim()],
+    email: [required(), email(), trim()]
   }
 )
 
-const isValid = await v.validate()
-console.log(v.state.errors)
+// 1. Live state binding
+validator.values.name = 'Alice'
+validator.values.email = 'alice@example.com'
+
+// 2. Validate all fields (e.g., on form submit)
+const isValid = await validator.validate()
+
+if (isValid) {
+  // Clean, sanitized data ready for backend API
+  const payload = validator.getPayload()
+  console.log('Sending payload:', payload)
+} else {
+  console.log('Validation errors:', validator.state.errors)
+}
 ```
 
-## Características
+---
 
-- ⚡ **Validación en vivo** — ES6 Proxies, los errores aparecen/desaparecen al instante
-- 🧩 **+40 reglas** incluidas — `required`, `email`, `date`, `when`, `custom`, etc.
-- 🔄 **Async nativo** — validación contra backend con protección contra race conditions
-- 🧹 **Transformadores** — `getPayload()` devuelve datos sanitizados sin alterar el input
-- 🌳 **Objetos anidados** — dot notation: `'apoderado.nroDoc'`
-- 🌐 **i18n** — `configureMessages()` para personalizar mensajes
-- 📦 **Zero dependencies**
+## Internationalization (i18n)
 
-## Paquetes
+`arv-validate` supports multi-language error messages out of the box.
 
-| Paquete | Descripción |
-|---|---|
-| [`arv-validate`](./packages/core) | Motor agnóstico |
-| [`arv-validate-vue`](./packages/vue) | Adaptador Vue 3 / Quasar |
+```javascript
+import { setLocale, configureMessages } from 'arv-validate'
 
-## Licencia
+// Switch to Spanish
+setLocale('es')
 
-MIT
+// Switch to English (default)
+setLocale('en')
+
+// Or customize individual messages globally
+configureMessages({
+  required: 'This field is required',
+  email: 'Please enter a valid email address'
+})
+```
+
+---
+
+## Packages & Framework Adapters
+
+| Package | Version | Description | Documentation |
+|---|---|---|---|
+| [`arv-validate`](./packages/core) | [![npm](https://img.shields.io/npm/v/arv-validate.svg)](https://www.npmjs.com/package/arv-validate) | Framework-agnostic core engine | [Core Docs](./packages/core/README.md) |
+| [`arv-validate-vue`](./packages/vue) | [![npm](https://img.shields.io/npm/v/arv-validate-vue.svg)](https://www.npmjs.com/package/arv-validate-vue) | Official Vue 3 Composition API adapter | [Vue Guide](./docs/VUE.en.md) |
+| `@arv-validate/react` | *Coming soon* | Official React hook adapter | *In progress* |
+| `@arv-validate/angular` | *Coming soon* | Official Angular signal adapter | *In progress* |
+
+---
+
+## Vue 3 Example
+
+```html
+<script setup>
+import { useValidator, required, email, minLength } from 'arv-validate-vue'
+
+const v = useValidator(
+  { username: '', email: '' },
+  {
+    username: [required(), minLength(3)],
+    email: [required(), email()]
+  }
+)
+
+const onSubmit = async () => {
+  const isValid = await v.validate()
+  if (!isValid) return
+  await fetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify(v.getPayload())
+  })
+}
+</script>
+
+<template>
+  <form @submit.prevent="onSubmit">
+    <input v-model="v.values.username" @blur="v.touch('username')" />
+    <span v-if="v.hasError('username')">{{ v.getError('username') }}</span>
+
+    <input v-model="v.values.email" @blur="v.touch('email')" />
+    <span v-if="v.hasError('email')">{{ v.getError('email') }}</span>
+
+    <button type="submit" :disabled="!v.isValid">Submit</button>
+  </form>
+</template>
+```
+
+---
+
+## Documentation
+
+- 📖 **[Full Agnostic Documentation (English)](./docs/DOCUMENTATION.md)**
+- 📗 **[Documentación Completa en Español](./docs/DOCUMENTACION.md)**
+- ⚡ **[Vue 3 Comprehensive Guide (English)](./docs/VUE.en.md)**
+- ⚡ **[Guía para Vue 3 en Español](./docs/VUE.md)**
+- 📋 **[Rules & Transformers Catalog](./docs/REGLAS.md)**
+
+---
+
+## License
+
+MIT © [Julio Cesar Callo](https://github.com/jccallo)

@@ -14,7 +14,7 @@ import {
   sameAs, strongPassword, pattern, custom, isBlank,
   trim, toLowerCase, toUpperCase, toFloat, round, truncate, toInteger,
   digitsOnly, toBooleanFlag, toDate, toDateTime, toISOString, transform,
-  configureMessages, defaultMessages, DEFAULT_TIMEZONE
+  configureMessages, defaultMessages, setLocale, en, es, DEFAULT_TIMEZONE
 } from '../packages/core/index.js'
 
 let passed = 0
@@ -684,6 +684,18 @@ section('D14. configureMessages — personalización global')
   configureMessages({ required: originalMsg })
   const rule2 = required()
   assert('restauración funciona', rule2('') === originalMsg)
+}
+
+section('D15. setLocale — cambio de idioma en vivo (es / en)')
+{
+  assert('enMessages tiene required en inglés', en.required === 'This field is required')
+  assert('esMessages tiene required en español', es.required === 'Este campo es obligatorio')
+
+  setLocale('es')
+  assert('setLocale(es) activa español', required()('') === 'Este campo es obligatorio')
+
+  setLocale('en')
+  assert('setLocale(en) activa inglés', required()('') === 'This field is required')
 }
 
 // ============================================================================

@@ -1,7 +1,7 @@
 {
   "name": "arv-validate",
-  "version": "1.0.0",
-  "description": "Motor de validación reactivo en tiempo real, 100% agnóstico a cualquier framework (Vanilla JS, Vue 3, React, Node.js, etc.)",
+  "version": "1.1.0",
+  "description": "High-performance, reactive, and atomic form validation and sanitization engine (Vanilla JS, Vue 3, React, Node.js, zero dependencies)",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",

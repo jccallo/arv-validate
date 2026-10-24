@@ -253,6 +253,13 @@ export interface DefaultMessages {
 }
 
 export const defaultMessages: DefaultMessages
+export const enMessages: DefaultMessages
+export const esMessages: DefaultMessages
+export const en: DefaultMessages
+export const es: DefaultMessages
 
 /** Personalizar o traducir los mensajes por defecto */
 export function configureMessages(customMessages: Partial<DefaultMessages>): void
+
+/** Cambiar el idioma activo de las validaciones ('en' | 'es') */
+export function setLocale(locale: 'en' | 'es'): void

@@ -1,7 +1,7 @@
 {
   "name": "arv-validate-vue",
-  "version": "1.0.0",
-  "description": "Adaptador reactivo de arv-validate para Vue 3 / Quasar (Composition API)",
+  "version": "1.1.0",
+  "description": "Official reactive Vue 3 adapter for arv-validate (Composition API, Vite, Nuxt)",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -23,7 +23,6 @@
     "validator",
     "vue",
     "vue3",
-    "quasar",
     "composition-api",
     "reactive",
     "form-validation",
@@ -31,7 +30,7 @@
   ],
   "peerDependencies": {
     "vue": "^3.0.0",
-    "arv-validate": "^1.0.0"
+    "arv-validate": "^1.1.0"
   },
   "author": "jccallo",
   "license": "MIT",

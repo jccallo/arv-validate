@@ -3,6 +3,8 @@
 > Adaptador reactivo oficial de **`arv-validate`** para **Vue 3** (Composition API con `<script setup>`).  
 > Proporciona reactividad bidireccional inmediata, validación síncrona/asíncrona en vivo y soporte completo para TypeScript.
 
+[English](./VUE.en.md) | [Español](./VUE.md)
+
 ---
 
 ## 📑 Tabla de Contenidos
