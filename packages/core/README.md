@@ -124,7 +124,8 @@ configureMessages({
 
 - 📖 [Comprehensive Documentation (English)](https://github.com/jccallo/arv-validate/blob/main/docs/DOCUMENTATION.md)
 - 📗 [Documentación Completa en Español](https://github.com/jccallo/arv-validate/blob/main/docs/DOCUMENTACION.md)
-- 📋 [Rules Catalog](https://github.com/jccallo/arv-validate/blob/main/docs/REGLAS.md)
+- 📋 [Rules & Transformers Catalog (English)](https://github.com/jccallo/arv-validate/blob/main/docs/RULES.md)
+- 📋 [Catálogo de Reglas y Transformadores (Español)](https://github.com/jccallo/arv-validate/blob/main/docs/REGLAS.md)
 
 ---
 

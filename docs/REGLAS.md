@@ -3,6 +3,8 @@
 > Documentación técnica exhaustiva del módulo [`arv-validate/rules`](../packages/core/rules.js).  
 > Cada regla es una función pura que retorna `true` si el valor es válido, o un `string` con el mensaje de error si no lo es.
 
+[English](./RULES.md) | [Español](./REGLAS.md)
+
 ---
 
 ## 📑 Tabla de Contenidos
@@ -766,7 +768,7 @@ import {
   trim, 
   toLowerCase, 
   toDate 
-} from 'src/validator' // o './validator'
+} from 'arv-validate'
 
 const v = useValidator(
   {

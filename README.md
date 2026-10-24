@@ -149,7 +149,8 @@ const onSubmit = async () => {
 - 📗 **[Documentación Completa en Español](./docs/DOCUMENTACION.md)**
 - ⚡ **[Vue 3 Comprehensive Guide (English)](./docs/VUE.en.md)**
 - ⚡ **[Guía para Vue 3 en Español](./docs/VUE.md)**
-- 📋 **[Rules & Transformers Catalog](./docs/REGLAS.md)**
+- 📋 **[Rules & Transformers Catalog (English)](./docs/RULES.md)**
+- 📋 **[Catálogo de Reglas y Transformadores (Español)](./docs/REGLAS.md)**
 
 ---
 

@@ -555,9 +555,7 @@ const v = createValidator(initialData = {}, schema = {}, options = {})
 
 ## 7. Rules & Transformers Reference
 
-For the comprehensive catalog of 40+ built-in rules (data types, string length, numbers, dates, cross-field, files, regex, and transformers):
-
-👉 **[View Full Catalog of Rules & Transformers (REGLAS.md)](./REGLAS.md)**
+👉 **[View Full Catalog of Rules & Transformers (English)](./RULES.md)** | **[Ver Catálogo en Español (REGLAS.md)](./REGLAS.md)**
 
 ---
 
