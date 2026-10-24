@@ -147,9 +147,11 @@ export const useAuthStore = defineStore('auth', () => {
 
 ## Documentation
 
-- ⚡ **[Full Vue 3 Guide with 9 Examples (English)](../../docs/VUE.en.md)**
-- ⚡ **[Guía Completa para Vue 3 en Español](../../docs/VUE.md)**
-- 📖 **[Core Agnostic Documentation](../../docs/DOCUMENTATION.md)**
+- ⚡ **[Full Vue 3 Guide with 9 Examples (English)](https://github.com/jccallo/arv-validate/blob/main/docs/VUE.en.md)**
+- ⚡ **[Guía Completa para Vue 3 en Español](https://github.com/jccallo/arv-validate/blob/main/docs/VUE.md)**
+- 📋 **[Rules & Transformers Catalog (English)](https://github.com/jccallo/arv-validate/blob/main/docs/RULES.md)**
+- 📋 **[Catálogo de Reglas y Transformadores (Español)](https://github.com/jccallo/arv-validate/blob/main/docs/REGLAS.md)**
+- 📖 **[Core Agnostic Documentation](https://github.com/jccallo/arv-validate/blob/main/docs/DOCUMENTATION.md)**
 
 ---
 

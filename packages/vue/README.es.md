@@ -111,8 +111,11 @@ El composable `useValidator(initialData, schema, options)` retorna:
 
 ## Documentación Completa
 
-- ⚡ **[Guía Detallada para Vue 3 (Español)](../../docs/VUE.md)**
-- ⚡ **[Vue 3 Comprehensive Guide (English)](../../docs/VUE.en.md)**
+- ⚡ **[Guía Detallada para Vue 3 en Español](https://github.com/jccallo/arv-validate/blob/main/docs/VUE.md)**
+- ⚡ **[Vue 3 Comprehensive Guide (English)](https://github.com/jccallo/arv-validate/blob/main/docs/VUE.en.md)**
+- 📋 **[Catálogo de Reglas y Transformadores (Español)](https://github.com/jccallo/arv-validate/blob/main/docs/REGLAS.md)**
+- 📋 **[Rules & Transformers Catalog (English)](https://github.com/jccallo/arv-validate/blob/main/docs/RULES.md)**
+- 📖 **[Documentación Completa del Core](https://github.com/jccallo/arv-validate/blob/main/docs/DOCUMENTACION.md)**
 
 ## Licencia
 
